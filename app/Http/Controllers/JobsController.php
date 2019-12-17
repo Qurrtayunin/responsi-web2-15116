@@ -12,63 +12,63 @@ class JobsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $da = Jobs::all();
-        return view('')->with('', $ta);
+        $data = Jobs::all();
+        return view('jobs.index')->with('jobs', $data);
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        return view('');
+        return view('jobs.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $request->validate([
-            'nama'=>'required',
+            'name'=>'required',
         ]);
         $jobs = new Jobs([
-            'nama' => $request->input('nama')
+            'name' => $request->input('name')
         ]);
         $jobs->save();
         return redirect('jobs');
     }
-
     /**
      * Display the specified resource.
      *
      * @param  \App\Jobs  $jobs
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Jobs  $jobs
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         $da = Jobs::where('id_jobs', '=', $id)->firstOrFail();
-        return view('')->with('', $ta);
+        return view('jobs.edit')->with('jobs', $da);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -76,27 +76,28 @@ class JobsController extends Controller
      * @param  \App\Jobs  $jobs
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama'=>'required',
+            'name'=>'required',
         ]);
         $data = [
-            'nama' => $request->nama,
+            'name' => $request->name,
         ];
         Jobs::where('id_jobs',$id)->update($data);
         return redirect('jobs');
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Jobs  $jobs
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         Jobs::where('id_jobs',$id)->delete();
-        return redirect('job');
+        return redirect('jobs');
     }
 }

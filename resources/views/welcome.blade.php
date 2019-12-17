@@ -63,7 +63,8 @@
             }
         </style>
     </head>
-    <body>
+
+     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -82,13 +83,14 @@
             <div class="content">
                 <div class="title m-b-md">
                     <!-- Isikan dengan username akun github anda -->
+                    qurrtayunin
                 </div>
 
                 <div class="links">
                     <!-- ganti url dengan link github anda -->
                     <!-- <a href="#">GitHub</a> -->
+                    <a href="https://github.com/qurrtayunin/responsi-web2-15116">GitHub</a>
                 </div>
             </div>
         </div>
     </body>
-</html>

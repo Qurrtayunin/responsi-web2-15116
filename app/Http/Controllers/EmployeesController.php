@@ -6,6 +6,7 @@ use App\Employees;
 use App\Jobs;
 use Illuminate\Http\Request;
 
+
 class EmployeesController extends Controller
 {
     /**
@@ -13,29 +14,30 @@ class EmployeesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $da = Employees::all();
-        return view('')->with('', $ta);
+        return view('employees.index')->with('employees', $da);
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function create()
     {
         $da = Jobs::all();
-        return view('')->with('', $ta);
+        return view('employees.create')->with('jobs', $da);
     }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -53,7 +55,7 @@ class EmployeesController extends Controller
             'address' => $request->input('alamat')
         ]);
         $employees->save();
-        return redirect('employe');
+        return redirect('employees');
     }
 
     /**
@@ -66,20 +68,19 @@ class EmployeesController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Employees  $employees
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         $jobs = Jobs::all();
         $data = Employees::where('id_employees', '=', $id)->firstOrFail();
-        return view('')->with('employees', $data)->with('jobs', $jobs);
+        return view('employees.edit')->with('employees', $data)->with('jobs', $jobs);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -87,6 +88,7 @@ class EmployeesController extends Controller
      * @param  \App\Employees  $employees
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -104,18 +106,18 @@ class EmployeesController extends Controller
             'address' => $request->input('alamat')
         ];
         Employees::where('id_employees',$id)->update($data);
-        return redirect('employ');
+        return redirect('employees');
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Employees  $employees
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy($id)
     {
         Employees::where('id_employees',$id)->delete();
-        return redirect('employe');
+        return redirect('employees');
     }
 }

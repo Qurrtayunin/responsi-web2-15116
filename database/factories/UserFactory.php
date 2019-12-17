@@ -1,12 +1,10 @@
 <?php
-
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\User;
 use App\Jobs;
 use App\Employees;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
-
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -28,8 +26,26 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
+
+$factory->define(Jobs::class, function (Faker $faker) {
+    return [
+        'name' => $faker->jobTitle,
+    ];
+});
+
 //  factory jobs
 //  kolom 'name' => faker->jobTitle
+$factory->define(Employees::class, function (Faker $faker) {
+    return [
+        'id_jobs' => $faker->numberBetween(1,10),
+        'name' => $faker->name,
+        'email' => $faker->email,
+        'phone' => $faker->phoneNumber,
+        'address' => $faker->address,
+    ];
+});
+
+
 
 //  factory employees
 //  kolom 'id_jobs' => faker->numberBetween() numberBetween adalah id_jobs minimal dan id_jobs maksimal yang ada pada tabel jobs
@@ -37,5 +53,4 @@ $factory->define(User::class, function (Faker $faker) {
 //  kolom 'email' => faker->email UNIQUE
 //  kolom 'phone' => faker->phoneNumber
 //  kolom 'address' => faker->address
-
 // documentation https://github.com/fzaninotto/Faker
